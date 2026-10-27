@@ -101,36 +101,82 @@ p2 <- ggplot() +
 
 ggsave(p2, filename = "arterials.png")
 
-# hij <- st_read("hij.geojson")
-# lolnope
 
+city_bbox <- city_boundary %>% st_bbox()
+city_mid <- mean(c(city_bbox["xmin"], city_bbox["xmax"]))
+pad <- 5000
 
-# Pedestrian high-injury streets
-ped_hij_streets <- rochester_streets %>%
-  filter(street_name_norm %in% c(
-    "LAKE AVE",
-    "NORTH CLINTON AVE",
-    "CLIFTON AVE",
-    "HUDSON AVE",
-    "PORTLAND AVE",
-    "EAST MAIN ST",
-    "MONROE AVE",
-    "LYELL AVE",
-    "DEWEY AVE",
-    "WEST MAIN ST"
-  ))
+hij <- st_read("Rochester_ATP_Top10_Ped_Bike_Crash_Corridors.geojson") %>%
+    st_transform(2262) %>%
+    mutate(
+        # get xys for labels
+        xys = st_geometry(.) %>% st_point_on_surface() %>% st_coordinates(),
+        x = xys[,1],
+        y = xys[,2],
+        side = if_else(x < city_mid, "left", "right"),
+        target = if_else(side == "left", city_bbox["xmin"] - pad, city_bbox["xmax"] + pad),
+        hjust_val = if_else(side == "left", 1, 0),
+        nudge_x_val = target - x)
 
-# Bicycle high-injury streets
-bike_hij_streets <- rochester_streets %>%
-  filter(street_name_norm %in% c(
-    "NORTH CLINTON AVE",
-    "CARTER ST",
-    "CLIFFORD AVE",
-    "FERNWOOD AVE",
-    "HUDSON AVE",
-    "EAST MAIN ST",
-    "DEWEY AVE",
-    "LYELL AVE",
-    "JAY ST",
-    "GENESEE ST"
-  ))
+ped <- hij %>% filter(mode == "Pedestrian")
+bike <- hij %>% filter(mode == "Bicycle")
+
+ped_prop <- (ped %>% st_intersection(all_zones) %>% st_length() %>% sum()) / (ped %>% st_length() %>% sum())
+bike_prop <- (bike %>% st_intersection(all_zones) %>% st_length() %>% sum()) / (bike %>% st_length() %>% sum())
+
+p_ped <- ped %>%
+    ggplot(data = ) +
+    geom_sf(data = city_boundary, fill = NA, color = 'black') +
+    # arterials
+    geom_sf(data = arterials, fill = NA, color = 'grey', size = 1) +
+    geom_sf(data = all_zones, fill = 'grey', alpha = .5) +
+    geom_sf(data = ped, color = 'red', size = 1) +
+    geom_label_repel(
+        data = ped, aes(x = x, y = y, label = street, hjust = hjust_val),
+        direction = "y", nudge_x = ped$nudge_x_val,
+        label.padding = .1, alpha = .75, segment.size = 1, segment.color = "black",
+        min.segment.length = 0, box.padding = .5, force = 10,
+        fill = "black", color = "white"
+        ) +
+    theme_void() +
+    # theme(axis.title = element_blank()) +
+    ggtitle("Pedestrian High Injury Network + 1/4 mile schools buffer")
+
+ggsave(p_ped, filename = "ped_high_inj_network.png", bg = "white")
+
+(p_ped + 
+    coord_sf(xlim = st_bbox(ped)[c("xmin", "xmax")], ylim = st_bbox(ped)[c("ymin", "ymax")]) +
+    ggtitle("Pedestrian High Injury Network + 1/4 mile schools buffer", subtitle = "zoomed in")
+    ) %>% 
+    ggsave(., filename = "ped_high_inj_network_zoom.png", bg = "white")
+
+p_bike <- ggplot() +
+    geom_sf(data = city_boundary, fill = NA, color = 'black') +
+    # arterials
+    # geom_sf(data = arterials, fill = NA, color = 'black', size = 1) +
+    geom_sf(data = rochester_streets, fill = NA, col = 'black', alpha = .1) +
+    geom_sf(data = all_zones, fill = 'grey', alpha = .5) +
+    geom_sf(data = bike, color = 'red', size = 1) +
+    geom_label_repel(
+        data = bike, aes(x = x, y = y, label = street, hjust = hjust_val),
+        direction = "y", 
+        nudge_x = bike$nudge_x_val, 
+        label.padding = .1, alpha = .75, segment.size = 1, segment.color = "black",
+        min.segment.length = 0, box.padding = .5, force = 10,
+        fill = "black", color = "white"
+        ) +
+    theme_void() +
+    # zoom in:
+    ggtitle("Cyclist High Injury Network + 1/4 mile schools buffer")
+
+ggsave(p_bike, filename = "bike_high_inj_network.png", bg = "white")
+
+(p_bike + 
+    coord_sf(
+        xlim = st_bbox(bike)[c("xmin", "xmax")], 
+        ylim = st_bbox(bike)[c("ymin", "ymax")]) +
+    ggtitle(
+        "Cyclist High Injury Network + 1/4 mile schools buffer", 
+        subtitle = "zoomed in")
+    ) %>%
+    ggsave(filename = "bike_high_inj_network_zoom.png", bg = "white")
