@@ -1,0 +1,215 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "Lake Ave",
+        "network_type": "Pedestrian HIN",
+        "limits": "Driving Park Ave to Lyell Ave"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.6231, 43.1818],
+          [-77.6242, 43.1650]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "Dewey Ave",
+        "network_type": "Pedestrian & Bicycle HIN",
+        "limits": "Ridgeway Ave to Emerson St"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.6338, 43.1884],
+          [-77.6325, 43.1691]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "Lyell Ave",
+        "network_type": "Pedestrian & Bicycle HIN",
+        "limits": "Mt Read Blvd to Broad St"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.6580, 43.1612],
+          [-77.6255, 43.1610]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "Jay St",
+        "network_type": "Bicycle HIN",
+        "limits": "Mt Read Blvd to Child St"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.6575, 43.1568],
+          [-77.6380, 43.1568]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "Genesee St",
+        "network_type": "Bicycle HIN",
+        "limits": "Brooks Ave to Main St W"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.6402, 43.1368],
+          [-77.6375, 43.1518]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "North Clinton Ave",
+        "network_type": "Pedestrian & Bicycle HIN",
+        "limits": "Upper Falls Blvd to Clifford Ave"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.6080, 43.1650],
+          [-77.6105, 43.1762]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "Clifford Ave",
+        "network_type": "Pedestrian & Bicycle HIN",
+        "limits": "St Paul St to Portland Ave"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.6185, 43.1758],
+          [-77.5950, 43.1760]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "Carter St",
+        "network_type": "Bicycle HIN",
+        "limits": "Clifford Ave to Norton St"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.6005, 43.1760],
+          [-77.5990, 43.1878]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "Hudson Ave",
+        "network_type": "Pedestrian & Bicycle HIN",
+        "limits": "Upper Falls Blvd to Norton St"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.6030, 43.1670],
+          [-77.5960, 43.1878]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "Portland Ave",
+        "network_type": "Pedestrian HIN",
+        "limits": "Central Ave to Clifford Ave"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.5998, 43.1620],
+          [-77.5920, 43.1762]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "Fernwood Ave",
+        "network_type": "Bicycle HIN",
+        "limits": "Hudson Ave to Portland Ave"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.5975, 43.1810],
+          [-77.5850, 43.1812]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "East Main St",
+        "network_type": "Pedestrian & Bicycle HIN",
+        "limits": "N Union St to Culver Rd"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.5940, 43.1585],
+          [-77.5650, 43.1570]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "West Main St",
+        "network_type": "Pedestrian HIN",
+        "limits": "Genesee St to Broad St"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.6375, 43.1518],
+          [-77.6180, 43.1535]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street_name": "Monroe Ave",
+        "network_type": "Pedestrian HIN",
+        "limits": "Alexander St to Culver Rd"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-77.5920, 43.1480],
+          [-77.5680, 43.1360]
+        ]
+      }
+    }
+  ]
+}
